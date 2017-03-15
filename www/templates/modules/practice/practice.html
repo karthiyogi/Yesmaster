@@ -1,0 +1,143 @@
+<ion-view class="app-bcg">
+  <ion-content class="padding" ng-class="{ 'backgroundblack': !showtimeline}" >
+    <div ng-if="!showtimeline" scroll="false" >
+    <div style="padding:5px;">
+      <form name="userForm">
+        <div layout="column" layout-align="start">
+              <!-- <div>    <md-input-container class="md-block">
+                            <label class="orgclr">Year</label>
+                            <md-select ng-model="data.year" class="orgclr">
+                              <md-option style="color:black"><em>None</em></md-option>
+                              <md-option style="color:black" ng-repeat="yr in years" ng-value="yr">
+                                {{yr}}
+                              </md-option>
+                            </md-select>
+                          </md-input-container>
+                        </div> -->
+                        <div>
+                          <md-input-container class="md-block">
+                      <label>Year</label>
+                      <md-select ng-model="data.year" multiple>
+                        <md-select-header class="demo-select-header">
+                        <md-button class="md-primary" ng-click="toggleAllyear()" ng-hide="years.length==data.year.length">Select All</md-button>
+                        <md-button class="md-primary" ng-click="toggleAllyear()" ng-show="years.length==data.year.length">Un Select All</md-button>
+                       </md-select-header>
+                        <md-optgroup label="Select Year">
+                          <md-option ng-value="yr" ng-repeat="yr in years">{{yr}}</md-option>
+                        </md-optgroup>
+                      </md-select>
+                    </md-input-container>
+                        </div>
+                        <div>
+                          <md-input-container class="md-block">
+                      <label>Month</label>
+                      <md-select ng-model="data.month" multiple>
+                        <md-select-header class="demo-select-header">
+                        <md-button class="md-primary" ng-click="toggleAllmonth()" ng-hide="months.length==data.month.length">Select All</md-button>
+                        <md-button class="md-primary" ng-click="toggleAllmonth()" ng-show="months.length==data.month.length">Un Select All</md-button>
+                       </md-select-header>
+                        <md-optgroup label="Select Month">
+                          <md-option ng-value="mn" ng-repeat="mn in months">{{mn}}</md-option>
+                        </md-optgroup>
+                      </md-select>
+                    </md-input-container>
+                        </div>
+                        <!-- <div>
+                          <md-input-container class="md-block">
+                      <label>Month</label>
+                      <md-select ng-model="data.month" multiple>
+                        <md-optgroup label="Select Month">
+                          <md-option ng-value="mn" ng-repeat="mn in months">{{mn}}</md-option>
+                        </md-optgroup>
+                      </md-select>
+                    </md-input-container>
+                        </div> -->
+          <div>
+            <md-input-container class="md-block">
+        <label>Priority</label>
+        <md-select ng-model="data.priority" multiple>
+          <md-optgroup label="Select Priority">
+            <md-option ng-value="pr" ng-repeat="pr in priorities">{{pr}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+          </div>
+          <div>
+            <md-input-container class="md-block" >
+                      <label style="color:orange">Category</label>
+                      <md-select ng-model="data.categorytype" style="color:orange !important" ng-change="changeSubcategory(data.categorytype)">
+                        <md-option style="color:black" value="All"><em>All</em></md-option>
+                        <md-option style="color:black" ng-repeat="cr in categories.allcategories" ng-value="cr">
+                          {{cr}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+          </div>
+          <div>
+            <md-input-container class="md-block">
+        <label>Sub Category</label>
+        <md-select ng-model="data.subcategorytype" multiple>
+          <md-select-header class="demo-select-header">
+          <md-button class="md-primary" ng-click="toggleAll()" ng-hide="subcategories.length==data.subcategorytype.length">Select All</md-button>
+          <md-button class="md-primary" ng-click="toggleAll()" ng-show="subcategories.length==data.subcategorytype.length">Un Select All</md-button>
+         </md-select-header>
+          <md-optgroup label="Select Sub Category">
+            <md-option ng-value="sc" ng-repeat="sc in subcategories">{{sc}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+          </div>
+          <md-button class="md-raised" style="background-color:orange" ng-click="search(data)">Search</md-button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <div style="padding:5px;">
+        <form name="userForm">
+          <div layout="column" layout-align="start">
+            <p style="color:orange;">Sorted By: </p>
+               <md-radio-group ng-model="orderbydata" ng-change="changesort(orderbydata)">
+                 <md-radio-button value="brief" style="color:orange;">Alphabets</md-radio-button>
+                 <md-radio-button value="categorytype" style="color:orange;"> Category </md-radio-button>
+                 <md-radio-button value="month" style="color:orange;">Month</md-radio-button>
+               </md-radio-group>
+          </div></form>
+        </div>
+    </div>
+    </div>
+    <div  ng-if="showtimeline">
+      <div class="bar bar-header item-input-inset" style="background: none; border:none;" ng-show="docsSearchBar">
+        <label class="item-input-wrapper" style="background: none; border: 1px solid #eee;">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="Search" ng-model="docsSearch">
+        </label>
+        <button class="button button-positive" style="background-color:black;color:white" ng-click="toggleDocsSearchBar()"> Cancel </button>
+      </div>
+    <section id="cd-timeline" class="cd-container">
+
+       <div ng-repeat="currentaffair in currentaffairs | orderBy : orderbydata  | filter : docsSearch">
+         <div class="cd-timeline-block">
+           <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
+           <div class="cd-timeline-picture dark">
+             <img  ng-src="/img/{{currentaffair.categorytype}}.png"></img>
+
+             <!-- <img ng-src="/img/{{currentaffair.categorytype}}{{currentaffair.subcategorytype}}.svg" err-SRC="/img/{{currentaffair.categorytype}}.png"></img> -->
+           </div>
+           <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
+           <div class="cd-timeline-content dark" style="background-color:black;">
+             <h5 class="marginBottom0 marginTop0" style="color:white;font-size:17px;">{{currentaffair.brief}}</h5>
+             <p class="marginTop5 cd-author" ng-if="currentaffair.date" style="font-size:16px;color:white;">on {{currentaffair.date}} {{currentaffair.month}}</p>
+             <p class="timelineText" style="color:white;font-size:15px;">{{currentaffair.desc}}</p>
+           </div>
+         </div>
+       </div>
+     </section></div>
+  </ion-content>
+  <div class="fixed-outside">
+    <div class="row">
+      <div class="col">
+<div class="search" style="float:right;margin-top: -25%;" ng-click="toggle()"><img src="img/search.png" /></div>
+</div>
+    </div>
+  </div>
+</ion-view>

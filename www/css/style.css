@@ -1,0 +1,101 @@
+/* Empty. Add your own CSS if you like */
+.app-bcg {
+  background: url("../img/photo_bg.jpg") no-repeat center center; background-size: cover;
+}
+.one{
+
+  background-color: #9400D3  !important;
+}
+.two{
+
+  background-color: #4B0082 !important;
+}
+.three{
+
+  background-color: royalblue !important;
+}
+.four{
+
+  background-color: forestgreen !important;
+}
+.five{
+
+  background-color: yellow !important;
+}
+.six{
+
+  background-color: darkorange !important;
+}
+.six p, .six h5, .five p, .five h5{
+
+  color: black !important;
+}
+.seven{
+
+  background-color: firebrick !important;
+}
+.eight{
+
+  background-color: #000000 !important;
+}
+.nine{
+
+  background-color: mediumvioletred !important;
+}
+.zero{
+
+  background-color: saddlebrown !important;
+}
+.bar-light.bar-trans .title.title-left.header-item{
+  text-align: center;
+  color:#fff;
+}
+.backgroundblack{
+
+  background-color: black !important;
+}
+md-select-menu md-content{
+  background-color: goldenrod;
+  color: black;
+}
+md-input-container.md-input-has-value .md-select-value>span:not(.md-select-icon){
+  color: orange;
+}
+.md-select-value{
+    color: orange;
+}
+.md-select-value:focus {
+  color: orange;
+}
+.orgclr{
+color:orange !important
+}
+.md-select-value.md-select-placeholder{
+  color: orange !important;;
+}
+.bar-trans {
+  background-color: transparent !important;
+  /*background-image: none !important;*/
+}
+
+.bar-trans i { color: #fff;}
+
+.search{float:left;}
+
+.fixed-outside{
+  position: absolute;
+      bottom: -75px;
+      padding-right: 15px;
+      color: white;
+      width: 50%;
+      height: 120px;
+      text-align: center;
+      z-index: 100;
+      right: 0;
+}
+md-radio-button .md-off{
+    border-color:orange;
+  }
+  md-radio-button .md-on{
+    color:orange;
+  }
