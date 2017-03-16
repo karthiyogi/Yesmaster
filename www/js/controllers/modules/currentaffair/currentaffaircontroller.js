@@ -15,6 +15,11 @@ angular.module('starter.controllers')
 
 
   };
+
+    $rootScope.docsSearchBar = false;
+    $scope.toggleDocsSearchBar = function() {
+        $rootScope.docsSearchBar = !$rootScope.docsSearchBar;
+    }
 $scope.showtimeline = true;
 $scope.subcategories = [];
 init();

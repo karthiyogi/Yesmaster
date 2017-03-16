@@ -17,6 +17,10 @@ $scope.toggleAllyear = toggleAllyear;
 $scope.changesort = changesort;
 $scope.search = search;
 }
+$rootScope.docsSearchBar = false;
+$scope.toggleDocsSearchBar = function() {
+    $rootScope.docsSearchBar = !$rootScope.docsSearchBar;
+}
 function search(showperiod,data){
   console.log(data)
   $scope.currentaffairs = yearsdata;

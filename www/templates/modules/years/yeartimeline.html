@@ -99,19 +99,19 @@
     </div>
     </div>
     <div ng-if="showtimeline">
-      <div class="bar bar-header item-input-inset" style="background: none; border:none;" ng-show="docsSearchBar">
+      <!-- <div class="bar bar-header item-input-inset" style="background: none; border:none;" ng-show="docsSearchBar">
         <label class="item-input-wrapper" style="background: none; border: 1px solid black;">
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" style="color:black" placeholder="Search" ng-model="docsSearch">
         </label>
         <button class="button button-positive" style="background-color:black;color:white" ng-click="toggleDocsSearchBar()"> Cancel </button>
-      </div>
+      </div> -->
     <section id="cd-timeline" class="cd-container" >
        <div ng-repeat="currentaffair in currentaffairs | orderBy : orderbydata | filter : docsSearch">
          <div class="cd-timeline-block">
            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
            <div class="cd-timeline-picture dark">
-             <img  ng-src="/img/{{currentaffair.categorytype}}.png"></img>
+             <img  ng-src="img/{{currentaffair.categorytype}}.png"></img>
 
              <!-- <img ng-src="/img/{{currentaffair.categorytype}}{{currentaffair.subcategorytype}}.svg" err-SRC="/img/{{currentaffair.categorytype}}.png"></img> -->
            </div>
@@ -127,6 +127,14 @@
      </section>
      </div>
   </ion-content>
+  <div class="fixed-outside1 item-input-inset" style="background: none; border:none;" ng-show="docsSearchBar">
+    <label class="item-input-wrapper" style="background: none; border: 1px solid black;">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" style="color:black" placeholder="Search" ng-model="docsSearch">
+    </label>
+    <button class="button button-positive" style="background-color:black;color:white" ng-click="toggleDocsSearchBar()"> Cancel </button>
+
+  </div>
   <div class="fixed-outside">
     <div class="row">
       <div class="col">
