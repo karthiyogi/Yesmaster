@@ -71,7 +71,16 @@ angular.module('starter')
           controller : 'practiceCtrl'
         }
       }
-    });
+    })
+    .state('app.result', {
+       url: '/result',
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/modules/practice/result.html',
+           controller : 'resultCtrl'
+         }
+       }
+     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/yeartimeline');
+  $urlRouterProvider.otherwise('/app/result');
 });

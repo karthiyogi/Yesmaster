@@ -111,6 +111,7 @@ var categorydata = firebase.database().ref('category');
 
 function toggle(){
 $scope.showtimeline =!$scope.showtimeline;
+$scope.docsSearchBar = false;
 if($scope.subcategories && $scope.subcategories.length==0){
   getallsubcategory();
   $scope.data.subcategorytype =$scope.subcategories;

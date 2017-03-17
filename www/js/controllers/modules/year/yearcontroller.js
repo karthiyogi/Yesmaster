@@ -5,6 +5,7 @@ $scope.showtimeline = true;
 $scope.orderbydata= "categorytype";
 var   allcategorydata = "";
 var yearsdata = "";
+$scope.showperiod =true;
 $scope.data = {
 "categorytype" :"All",
 };
@@ -84,6 +85,7 @@ $scope.subcategories = $scope.categories[type];
 }
 function toggle(){
 $scope.showtimeline =!$scope.showtimeline;
+$scope.docsSearchBar = false;
 if($scope.subcategories && $scope.subcategories.length==0){
   getallsubcategory();
   $scope.data.subcategorytype =$scope.subcategories;
