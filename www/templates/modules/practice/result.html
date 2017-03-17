@@ -2,14 +2,17 @@
   <ion-content class="padding" >
     <div scroll="false" >
 <div class="column">
-
-  <div class="result">No of Correct Answers: 5</div>
-  <div class="result">No of Wrong Answers : 9 </div>
-  <div class="result">No of Unanswered Question : 3 </div>
+  <fusioncharts
+      width="350"
+      height="300"
+      type="column2d"
+      datasource="{{myDataSource}}"
+  ></fusioncharts>
+  <div class="result">No of Correct Answers: {{correct.value}}</div>
+  <div class="result">No of Wrong Answers : {{wrong.value}} </div>
+  <div class="result">No of Unanswered Question : {{unanswered.value}} </div>
+  <div class="result" style="margin-top:10px;" ui-sref="app.practice">Take Another Quiz!!!</div>
 </div>
-
     </div>
-
   </ion-content>
-
 </ion-view>

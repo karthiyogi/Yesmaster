@@ -65,6 +65,7 @@ angular.module('starter')
     }
   })  .state('app.practice', {
       url: '/practice',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl: 'templates/modules/practice/practice.html',
@@ -74,13 +75,18 @@ angular.module('starter')
     })
     .state('app.result', {
        url: '/result',
+       cache:false,
+       params: {
+      result: null
+    },
        views: {
          'menuContent': {
            templateUrl: 'templates/modules/practice/result.html',
-           controller : 'resultCtrl'
+           controller : 'resultCtrl',
+
          }
        }
      });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/result');
+  $urlRouterProvider.otherwise('/app/yeartimeline');
 });

@@ -17,6 +17,28 @@ $scope.changeSubcategory = changeSubcategory;
 $scope.toggleAllyear = toggleAllyear;
 $scope.changesort = changesort;
 $scope.search = search;
+$scope.addyear =addyear;
+}
+function addyear(){
+  console.log("enetre")
+var options = {
+    location: 'yes',
+    clearcache: 'yes',
+    toolbar: 'no'
+  };
+document.addEventListener("deviceready", function () {
+  $cordovaInAppBrowser.open('https://yesmaster-7f364.firebaseapp.com/#/years', '_blank', options)
+    .then(function(event) {
+      // success
+    })
+    .catch(function(event) {
+      // error
+    });
+
+
+  $cordovaInAppBrowser.close();
+
+}, false);
 }
 $rootScope.docsSearchBar = false;
 $scope.toggleDocsSearchBar = function() {

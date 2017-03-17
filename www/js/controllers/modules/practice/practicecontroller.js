@@ -1,8 +1,10 @@
 angular.module('starter.controllers')
-.controller('practiceCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray) {
+.controller('practiceCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray,$state,  $ionicViewService) {
   $scope.showtimeline =  false;
-$scope.categories = ["Multiplication","Square Root", "Cube Root"];
+$scope.categories = ["Square Root", "Cube Root"];
 $scope.rootvalues = ["5","10","15","20","25","30","35","40","45","50"];
+$scope.questionvalues = ["5","10","15","20","25","30","40","50","60","70","80","90","100"];
+
 $scope.showthis = 0;
 console.log($scope.rootvalues)
 console.log("prac");
@@ -14,16 +16,41 @@ $scope.startquiz = startquiz;
 $scope.selectTimer = selectTimer;
 $scope.nextquestion =nextquestion;
 $scope.prevquestion= prevquestion;
+$scope.endexam = endexam;
+}
+
+function endexam(){
+  console.log($scope.questions);
+  $scope.$broadcast('timer-stopped', 0);
+  $timeout.cancel(mytimeout);
+  $ionicViewService.nextViewOptions({
+ disableBack: true
+});
+  $state.go('app.result', {
+          result: $scope.questions
+        });
 }
 
 function nextquestion(){
+  if($scope.showthis+1!= $scope.questions.length){
+    console.log("ulla")
 $scope.showthis =$scope.showthis+1;
 if(($scope.showthis+1) == ($scope.questions.length)){
 console.log("finished")
 $scope.iscompleted =true;
 }
 console.log($scope.showthis)
-
+}else{
+  console.log($scope.questions);
+  $scope.$broadcast('timer-stopped', 0);
+  $timeout.cancel(mytimeout);
+  $ionicViewService.nextViewOptions({
+ disableBack: true
+});
+  $state.go('app.result', {
+          result: $scope.questions
+        });
+}
 }
 function prevquestion(){
   if($scope.showthis!=0){
@@ -43,6 +70,7 @@ $scope.onTimeout = function() {
     if ($scope.timer === 0) {
         $scope.$broadcast('timer-stopped', 0);
         $timeout.cancel(mytimeout);
+        $scope.endexam();
         return;
     }
     $scope.timer--;
@@ -119,7 +147,7 @@ for(var i = 0; i<data.questions; i++){
 $scope.questions.push(question)
 }else if(data.category == "Cube Root"){
     question.firstnum = _.random(1, data.uptovalue);
-    question.operation = "squareroot";
+    question.operation = "cuberoot";
     question.answer = question.firstnum * question.firstnum * question.firstnum;
 $scope.questions.push(question)
 }

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','angular-svg-round-progress'])
+angular.module('starter', ['ionic', 'starter.controllers','angular-svg-round-progress','ng-fusioncharts'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -37,4 +37,27 @@ angular.module('starter', ['ionic', 'starter.controllers','angular-svg-round-pro
           });
         }
       }
-    });
+    })
+    .directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+
+      $timeout(function() {
+        element[0].focus();
+      });
+    }
+  };
+})
+.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

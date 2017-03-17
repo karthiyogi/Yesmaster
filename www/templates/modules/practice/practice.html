@@ -19,7 +19,7 @@
             <md-input-container class="md-block" >
                       <label style="color:orange">No of Questions</label>
                       <md-select ng-model="obj.questions" style="color:orange !important" ng-change="changeSubcategory(data.categorytype)">
-                        <md-option style="color:black" ng-repeat="rtv in rootvalues" ng-value="rtv">
+                        <md-option style="color:black" ng-repeat="rtv in questionvalues" ng-value="rtv">
                           {{rtv}}
                         </md-option>
                       </md-select>
@@ -60,15 +60,15 @@
         <div  round-progress max="timeForTimer" current="timer" clockwise="false" color="#ef473a" rounded="true" class="text-center" radius="60"></div>
       </div>
 <div ng-repeat ="qn in questions">
-<div ng-if="qn.operation=='squareroot'">
+<div ng-if="qn.operation=='squareroot' || qn.operation=='cuberoot'">
   <div class="row" ng-if="$index==showthis" layout-align="space-around center">
     <div flux=34>
     </div>
-    <div style="font-size: 32px;font-weight: bold;padding-bottom:29px;" flex="26">  <p>{{qn.firstnum}} <sup>2</sup> = </p></div>
+    <div style="font-size: 32px;font-weight: bold;padding-bottom:29px;" flex="26">  <p>{{qn.firstnum}} <sup ng-if="qn.operation=='squareroot'">2</sup> <sup ng-if="qn.operation=='cuberoot'">3</sup> = </p></div>
   <div flex="40">
     <md-input-container class="md-block" flex-gt-sm>
 
-               <input ng-model="qn.myanswer" style="font-size: 32px;font-weight: bold"  autofocus>
+               <input type="number" ng-model="qn.myanswer" ng-enter="nextquestion()" style="font-size: 32px;font-weight: bold"   focus-me>
              </md-input-container>
   </div>
   </div>
@@ -79,16 +79,9 @@
   <div layout="row" layout-align="space-around center">
     <div><md-button class="md-raised md-primary" ng-click="prevquestion()">Back</md-button></div>
     <div ng-if="!iscompleted"><md-button class="md-raised md-primary" ng-click="nextquestion()">Next</md-button></div>
-    <div ng-if="iscompleted"><md-button class="md-raised md-primary" ng-click="nextquestion()">Finish</md-button></div>
+    <div ng-if="iscompleted"><md-button class="md-raised md-primary" ng-click="endexam()">Finish</md-button></div>
 
   </div>
    </div>
   </ion-content>
-  <div class="fixed-outside">
-    <div class="row">
-      <div class="col">
-<div class="search" style="float:right;margin-top: -25%;" ng-click="toggle()"><img src="img/search.png" /></div>
-</div>
-    </div>
-  </div>
 </ion-view>
