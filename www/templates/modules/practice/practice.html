@@ -35,7 +35,7 @@
                       </md-select>
                     </md-input-container>
           </div>
-          <div>
+          <div ng-if="obj.category=='Square Root'||obj.category=='Cube Root'">
             <md-input-container class="md-block" >
                       <label style="color:orange">Upto</label>
                       <md-select ng-model="obj.uptovalue" style="color:orange !important" ng-change="changeSubcategory(data.categorytype)">
@@ -45,6 +45,21 @@
                       </md-select>
                     </md-input-container>
           </div>
+          <div layout="row" layout-wrap flex>
+         <div flex-xs flex="50">
+           <md-checkbox aria-label="Select All"
+                        ng-checked="isChecked()"
+                        md-indeterminate="isIndeterminate()"
+                        ng-click="toggleAll()" style="color:orange">
+             <span ng-if="isChecked()" >Un-</span>Select All
+           </md-checkbox>
+         </div>
+           <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
+             <md-checkbox ng-checked="exists(item, selected)"  style="color:orange" ng-click="toggle(item, selected)">
+              {{ item }}
+             </md-checkbox>
+           </div>
+         </div>
           <md-button class="md-raised" style="background-color:orange" ng-click="startquiz(obj)">Start Quiz</md-button>
 
           </div>

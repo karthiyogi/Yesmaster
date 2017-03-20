@@ -92,11 +92,16 @@
                <md-radio-group ng-model="orderbydata" ng-change="changesort(orderbydata)">
                  <md-radio-button value="year" style="color:orange;">Year</md-radio-button>
                  <md-radio-button value="categorytype" style="color:orange;"> Category </md-radio-button>
-                 <md-radio-button value="numbercategory" style="color:orange;">Color</md-radio-button>
+                 <md-radio-button value="trickvalue" style="color:orange;">Color</md-radio-button>
                </md-radio-group>
           </div></form>
         </div>
     </div>
+    <div style="margin-top:40px;margin-left: 20px;">
+        <md-checkbox ng-model="makeallcolorblack" aria-label="Checkbox 1" style="color:orange" ng-change="changecolor()">
+          Make All color to Black
+        </md-checkbox>
+      </div>
     </div>
     <div ng-if="showtimeline">
       <!-- <div class="bar bar-header item-input-inset" style="background: none; border:none;" ng-show="docsSearchBar">
@@ -116,7 +121,7 @@
              <!-- <img ng-src="/img/{{currentaffair.categorytype}}{{currentaffair.subcategorytype}}.svg" err-SRC="/img/{{currentaffair.categorytype}}.png"></img> -->
            </div>
            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
-           <div class="cd-timeline-content dark {{currentaffair.numbercategory}}" >
+           <div class="cd-timeline-content dark {{currentaffair.numbercategory}}" ng-class="{ 'eight': makeallcolorblack}">
              <h5 class="marginBottom0 marginTop0" style="color:white;font-size:23px;font-weight: bold;">{{currentaffair.year}}  {{currentaffair.month}} {{currentaffair.date}}</h5>
              <!-- <p class="marginTop5 cd-author" ng-if="currentaffair.date" style="font-size:16px;color:white;">on </p> -->
              <p class="timelineText" style="color:white;font-size:17px;">{{currentaffair.brief}}</p>
@@ -135,13 +140,6 @@
     <button class="button button-positive" style="background-color:black;color:white" ng-click="toggleDocsSearchBar()"> Cancel </button>
 
   </div>
-  <div class="fixed-outside">
-    <div class="row">
-      <div class="col">
-<div class="search" style="float:right;margin-top: -25%;" ng-click="toggle()"><img src="img/search.png" /></div>
-</div>
-    </div>
-  </div>
   <div class="fixed-outside2">
     <div class="row">
       <div class="col">
@@ -149,4 +147,12 @@
 </div>
     </div>
   </div>
+  <div class="fixed-outside">
+    <div class="row">
+      <div class="col">
+<div class="search" style="float:right;margin-top: -25%;" ng-click="toggle()"><img src="img/search.png" /></div>
+</div>
+    </div>
+  </div>
+
 </ion-view>

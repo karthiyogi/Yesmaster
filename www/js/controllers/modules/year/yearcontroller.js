@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('yearCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray) {
   init();
 $scope.showtimeline = true;
+$scope.makeallcolorblack = false;
 $scope.orderbydata= "categorytype";
 var   allcategorydata = "";
 var yearsdata = "";
@@ -18,6 +19,20 @@ $scope.toggleAllyear = toggleAllyear;
 $scope.changesort = changesort;
 $scope.search = search;
 $scope.addyear =addyear;
+$scope.changecolor = changecolor;
+}
+function changecolor(){
+$scope.makeallcolorblack = !$scope.makeallcolorblack;
+// console.log("qwetry")
+}
+function toggle(){
+  console.log("enter")
+$scope.showtimeline =!$scope.showtimeline;
+$scope.docsSearchBar = false;
+if($scope.subcategories && $scope.subcategories.length==0){
+  getallsubcategory();
+  $scope.data.subcategorytype =$scope.subcategories;
+}
 }
 function addyear(){
   console.log("enetre")
@@ -105,14 +120,7 @@ $scope.subcategories = $scope.categories[type];
       getallsubcategory();
 }
 }
-function toggle(){
-$scope.showtimeline =!$scope.showtimeline;
-$scope.docsSearchBar = false;
-if($scope.subcategories && $scope.subcategories.length==0){
-  getallsubcategory();
-  $scope.data.subcategorytype =$scope.subcategories;
-}
-}
+
 function getallsubcategory(){
 $scope.subcategories = [];
   _.forEach(allcategorydata, function(value, key) {

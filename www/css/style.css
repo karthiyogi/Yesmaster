@@ -8,6 +8,9 @@
     margin:20px auto;
     font-size: 21px;
 }
+ md-checkbox:not(.md-checked) .md-icon{
+   border-color: orange;
+ }
 .result{
 
   border: 1px solid orange;
@@ -57,10 +60,7 @@ font-size: 20px;
 
   background-color: firebrick !important;
 }
-.eight{
 
-  background-color: #000000 !important;
-}
 .nine{
 
   background-color: mediumvioletred !important;
@@ -68,6 +68,14 @@ font-size: 20px;
 .zero{
 
   background-color: saddlebrown !important;
+}
+.eight{
+
+  background-color: #000000 !important;
+}
+.eight p, .eight h5{
+
+  color: white !important;
 }
 .bar-light.bar-trans .title.title-left.header-item{
   text-align: center;
