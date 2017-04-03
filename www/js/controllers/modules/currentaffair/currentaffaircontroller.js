@@ -3,7 +3,7 @@ angular.module('starter.controllers')
   $scope.orderbydata= "categorytype";
   var allcurrentaffairdata = "";
   var allcategorydata = "";
-  $scope.years = ["2016","2017","2018"];
+  $scope.years = [2016,2017,2018];
   $scope.months = [ "January","February","March","April","May","June","July","August","September","October","November","December"];
   $scope.priorities = ["high","medium","low"];
   $scope.data = {

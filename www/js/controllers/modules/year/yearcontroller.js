@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('yearCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray) {
+.controller('yearCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray,$mdDialog) {
   init();
 $scope.showtimeline = true;
 $scope.makeallcolorblack = false;
@@ -10,6 +10,24 @@ $scope.showperiod =true;
 $scope.data = {
 "categorytype" :"All",
 };
+$scope.deletethis = function(ev,item){
+  var confirm = $mdDialog.confirm()
+           .title('Would you like to delete this?')
+           .textContent(item.brief)
+           .ariaLabel('Lucky day')
+           .targetEvent(ev)
+           .ok('yes')
+           .cancel('No');
+
+     $mdDialog.show(confirm).then(function() {
+       console.log(_.findIndex(yearsdata, {"brief":item.brief}));
+        firebase.database().ref('years/'+_.findIndex(yearsdata, {"brief":item.brief})).set({"brief":"removed"});
+       $scope.status = 'You decided to get rid of your debt.';
+     }, function() {
+       $scope.status = 'You decided to keep your debt.';
+     });
+  console.log(item)
+}
 $scope.subcategories = [];
 function init(){
 initializeData();
@@ -64,7 +82,7 @@ function search(showperiod,data){
   $scope.currentaffairs = yearsdata;
   console.log($scope.currentaffairs)
   _.forEach(data, function(value, key) {
-console.log(value)
+// console.log(value)
     if(key== "categorytype" && value == "All"){
       value = $scope.categories.allcategories;
     }
@@ -140,19 +158,24 @@ console.log("yearsdata");
 console.log(yearsdata)
 $scope.allyears=[];
 _.forEach(yearsdata, function(value, key) {
+  // console.log(value)
 $scope.allyears =  _.concat($scope.allyears, value.year);
 
 // console.log(value)
 });
 $scope.allyears = _.uniq($scope.allyears);
 console.log($scope.allyears)
-  $scope.$apply();
+if ($scope.$root && $scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+$scope.$apply();
+}
 });
 var categorydata = firebase.database().ref('yearcategory');
 	categorydata.on('value', function(snapshot) {
 		$scope.categories = snapshot.val();
     allcategorydata = snapshot.val();
+    if ($scope.$root && $scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
     $scope.$apply();
+}
 	});
 }
 })
