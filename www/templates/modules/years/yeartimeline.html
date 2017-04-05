@@ -113,7 +113,7 @@
       </div> -->
     <section id="cd-timeline" class="cd-container" >
        <div ng-repeat="currentaffair in currentaffairs | orderBy : orderbydata | filter : docsSearch">
-         <div class="cd-timeline-block" ng-dblclick="deletethis($event,currentaffair)">
+         <div class="cd-timeline-block" ng-dblclick="deletethis($event,currentaffair)" ng-if="currentaffair.categorytype">
            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
            <div class="cd-timeline-picture dark">
              <img  ng-src="https://storage.googleapis.com/fusiontable-142013.appspot.com/yesmasterimg/{{currentaffair.categorytype}}.png"></img>

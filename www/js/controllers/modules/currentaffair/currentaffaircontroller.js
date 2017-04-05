@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('CurrentaffairCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray) {
+.controller('CurrentaffairCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray,LoaderService) {
   $scope.orderbydata= "categorytype";
   var allcurrentaffairdata = "";
   var allcategorydata = "";
@@ -95,10 +95,12 @@ $scope.currentaffairs= _.concat($scope.currentaffairs,_.filter(currdata, [key, v
 $scope.showtimeline =!$scope.showtimeline;
 }
 function initializeData(){
+   LoaderService.show("Loading...");
 var currentaffairsdata = firebase.database().ref('currentaffairs');
 currentaffairsdata.on('value', function(snapshot) {
   $scope.currentaffairs = snapshot.val();
 allcurrentaffairdata= snapshot.val();
+ LoaderService.hide();
   $scope.$apply();
 });
 var categorydata = firebase.database().ref('category');

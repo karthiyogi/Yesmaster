@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('yearCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray,$mdDialog) {
+.controller('yearCtrl', function($scope, $ionicModal, $timeout,$rootScope,$firebaseArray,$mdDialog,LoaderService) {
   init();
 $scope.showtimeline = true;
 $scope.makeallcolorblack = false;
@@ -150,6 +150,7 @@ $scope.subcategories = _.uniq($scope.subcategories);
 console.log($scope.subcategories);
 }
 function initializeData(){
+  LoaderService.show("Loading...");
 var allyearsdata = firebase.database().ref('years');
 allyearsdata.on('value', function(snapshot) {
   $scope.currentaffairs = snapshot.val();
@@ -165,6 +166,7 @@ $scope.allyears =  _.concat($scope.allyears, value.year);
 });
 $scope.allyears = _.uniq($scope.allyears);
 console.log($scope.allyears)
+LoaderService.hide();
 if ($scope.$root && $scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
 $scope.$apply();
 }
@@ -177,5 +179,6 @@ var categorydata = firebase.database().ref('yearcategory');
     $scope.$apply();
 }
 	});
+
 }
 })

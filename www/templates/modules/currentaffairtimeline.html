@@ -116,7 +116,7 @@
     <section id="cd-timeline" class="cd-container">
 
        <div ng-repeat="currentaffair in currentaffairs | orderBy : orderbydata  | filter : docsSearch">
-         <div class="cd-timeline-block">
+         <div class="cd-timeline-block" ng-if="currentaffair.categorytype">
            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
            <div class="cd-timeline-picture dark">
              <img  ng-src="https://storage.googleapis.com/fusiontable-142013.appspot.com/yesmasterimg/{{currentaffair.categorytype}}.png"></img>
@@ -126,7 +126,7 @@
            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
            <div class="cd-timeline-content dark" style="background-color:black;">
              <h5 class="marginBottom0 marginTop0" style="color:white;font-size:17px;">{{currentaffair.brief}}</h5>
-             <p class="marginTop5 cd-author" ng-if="currentaffair.date" style="font-size:16px;color:white;">on {{currentaffair.date}} {{currentaffair.month}}</p>
+             <p class="marginTop5 cd-author" style="font-size:16px;color:white;">on {{currentaffair.date}} {{currentaffair.month}}</p>
              <p class="timelineText" style="color:white;font-size:15px;">{{currentaffair.desc}}</p>
            </div>
          </div>
